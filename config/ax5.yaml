@@ -1,0 +1,21 @@
+parameters:
+  - name: image_width
+    type: int
+    node: ImageFormatControl/Width
+  - name: image_height
+    type: int
+    node: ImageFormatControl/Height
+  - name: pixel_format
+    type: enum # "Mono8", "Mono14", "Mono16"
+    node: ImageFormatControl/PixelFormat
+  - name: gev_scps_packet_size
+    type: int
+    # default is 1400. Set to 9000 to enable jumbo frames, ensure NIC MTU set >= 9000
+    node: TransportLayerControl/GigEVision/GevSCPSPacketSize
+  - name: acquisition_mode
+    type: int
+    node: AcquisitionControl/AcquisitionMode
+  - name: acquisition_start
+    type: int
+    node: AcquisitionControl/AcquisitionMode
+  
