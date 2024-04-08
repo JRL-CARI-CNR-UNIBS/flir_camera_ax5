@@ -27,5 +27,10 @@ launch:
         - name: 'parameter_file'
           value: '$(var parameter_file)'
         - name: 'serial_number'
-          value: "'75004577'"
+          value: '75004577'
         - from: '$(find-pkg-share flir_camera_ax5)/config/ax5_camera.yaml'
+  - node:
+      pkg: 'flir_camera_ax5'
+      exec: 'colormap'
+      namespace: 'flir'
+      
