@@ -1,0 +1,31 @@
+launch:
+  # - include:
+  #     file: '$(find-pkg-share spinnaker_camera_driver)/launch/driver_node.launch.py'
+  #     arg:
+  #       - name: 'parameter_file'
+  #         value: '$(find-pkg-share flir_camera_ax5)/config/ax5.yaml'
+  #       - name: 'serial'
+  #         value: "'75004577'"
+  # - timer:
+  #     period: 2.0
+  #     children:
+  #       - executable: 
+  #         cmd: 'ros2 param set /flir_camera '
+
+  - arg:
+      name: 'parameter_file'
+      default: '$(find-pkg-share flir_camera_ax5)/config/ax5_required.yaml'
+
+  - node:
+      pkg: 'spinnaker_camera_driver'
+      exec: 'camera_driver_node'
+      name: 'ax5_camera_node'
+      namespace: 'flir'
+      param:
+        - name: 'ffmpeg_image_transport.encoding'
+          value: 'hevc_nvenc'
+        - name: 'parameter_file'
+          value: '$(var parameter_file)'
+        - name: 'serial_number'
+          value: "'75004577'"
+        - from: '$(find-pkg-share flir_camera_ax5)/config/ax5_camera.yaml'
